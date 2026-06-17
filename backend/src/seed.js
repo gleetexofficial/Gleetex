@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const ADMIN_NAME = 'Muhammad Ahmad';
-const ADMIN_EMAIL = 'admin@gleetex.com';
-const ADMIN_PASSWORD = 'admin123';
-const OLD_EMAIL = 'admin@ahmury.com';
+const ADMIN_EMAIL = 'gleetex.official@gmail.com';
+const ADMIN_PASSWORD = 'GTX_GleeTex@MuneebV8!';
+const OLD_EMAIL = 'admin@gleetex.com';
 
 async function seed() {
   await mongoose.connect(process.env.MONGODB_URI);
@@ -13,11 +13,13 @@ async function seed() {
 
   const User = require('./models/User');
 
-  // Migrate old email if it exists
-  const oldAdmin = await User.findOne({ email: OLD_EMAIL });
-  if (oldAdmin) {
-    await User.updateOne({ email: OLD_EMAIL }, { $set: { email: ADMIN_EMAIL, name: ADMIN_NAME, role: 'admin' } });
-    console.log(`✅ Migrated admin email from ${OLD_EMAIL} to ${ADMIN_EMAIL}`);
+  // Migrate old emails if they exist
+  for (const oldMail of [OLD_EMAIL, 'admin@ahmury.com']) {
+    const oldAdmin = await User.findOne({ email: oldMail });
+    if (oldAdmin) {
+      await User.updateOne({ email: oldMail }, { $set: { email: ADMIN_EMAIL, name: ADMIN_NAME, role: 'admin' } });
+      console.log(`✅ Migrated admin email from ${oldMail} to ${ADMIN_EMAIL}`);
+    }
   }
 
   // Check if admin already exists with new email
