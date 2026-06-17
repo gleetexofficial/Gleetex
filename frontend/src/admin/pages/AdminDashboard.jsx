@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import api from '../../utils/api'
 import { FiUsers, FiPackage, FiShoppingBag, FiClock } from 'react-icons/fi'
-import { TbCurrencyRupee } from 'react-icons/tb'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
@@ -30,7 +29,7 @@ export default function AdminDashboard() {
   })) || []
 
   const stats = [
-    { label: 'Total Revenue', value: `Rs. ${data?.stats?.totalRevenue?.toLocaleString() || 0}`, icon: <TbCurrencyRupee size={20} />, color: 'text-gold-500' },
+    { label: 'Total Revenue', value: `Rs. ${data?.stats?.totalRevenue?.toLocaleString() || 0}`, icon: <span className="text-sm font-bold">PKR</span>, color: 'text-gold-500' },
     { label: 'Total Orders', value: data?.stats?.totalOrders || 0, icon: <FiShoppingBag size={20} />, color: 'text-blue-400' },
     { label: 'Pending Orders', value: data?.stats?.pendingOrders || 0, icon: <FiClock size={20} />, color: 'text-yellow-400' },
     { label: 'Total Products', value: data?.stats?.totalProducts || 0, icon: <FiPackage size={20} />, color: 'text-purple-400' },
