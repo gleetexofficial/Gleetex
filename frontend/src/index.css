@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-black text-white font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-gold-500 text-black font-semibold px-8 py-3.5 tracking-widest text-xs uppercase hover:bg-gold-400 transition-all duration-300 inline-block relative overflow-hidden;
+  }
+
+  .btn-gold::after {
+    content: '';
+    @apply absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300;
+  }
+
+  .btn-outline {
+    @apply border border-gold-500 text-gold-500 font-semibold px-8 py-3.5 tracking-widest text-xs uppercase hover:bg-gold-500 hover:text-black transition-all duration-300 inline-block;
+  }
+
+  .section-title {
+    @apply text-xs tracking-[0.3em] text-gold-500 uppercase mb-2;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl;
+  }
+
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-sm border border-white/10 hover:border-gold-500/30 transition-all duration-500;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 2px; }
+
+/* Marquee */
+.marquee-wrapper { overflow: hidden; }
+.marquee-track { display: flex; width: max-content; animation: marquee 35s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fade-in-slow {
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+/* WhatsApp pulse */
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(34, 197, 94, 0); }
+}
+
+.whatsapp-btn {
+  animation: whatsapp-pulse 2.5s infinite;
+}
